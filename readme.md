@@ -1,6 +1,6 @@
 # 🧰 Blender MyScripts
 
-A collection of custom Blender scripts by me, **Millenne Noel**, built to streamline and automate common workflow tasks in 3D projects — from quick object cleanup to batch renaming, material management, and procedural prefab tools.
+A collection of custom Blender scripts by me, **Millenne Noel**, built to streamline and automate common workflow tasks in 3D projects. From quick object cleanup to batch renaming, material management, and procedural prefab tools.
 
 ---
 
@@ -25,7 +25,7 @@ All scripts are designed for **Blender 4.0+** and can be installed as individual
 | **smart_rename.py** | Quickly renames multiple objects using regex patterns. |
 | **objectmesh_renamer.py** | Renames both Object and Mesh data with a prefix/append system. |
 | **batch_material_assigner.py** | Assigns selected materials to multiple objects at once. |
-| **remove_duplicate_materials.py** | Deletes materials ending in `.001`, `.002`, etc. |
+| **remove_duplicate_materials.py** | Finds materials ending in .001, .002, etc., replaces them with their original base material if available, and removes the duplicates. |
 | *(More coming soon)* | Prefab utilities, curve-based automation, and geo-node helpers. |
 
 ---
