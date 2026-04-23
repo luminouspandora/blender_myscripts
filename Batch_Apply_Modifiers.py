@@ -45,7 +45,7 @@ class VIEW3D_PT_finalize_geometry(bpy.types.Panel):
     bl_idname = "VIEW3D_PT_finalize_geometry"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Tools'
+    bl_category = "CustomTools"
 
     def draw(self, context):
         self.layout.operator("object.apply_all_modifiers", icon='MODIFIER')

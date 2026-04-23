@@ -100,7 +100,7 @@ class MATERIAL_PT_BatchAssigner(bpy.types.Panel):
     bl_idname = "MATERIAL_PT_batch_assigner"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Materials"
+    bl_category = "CustomTools"
 
     def draw(self, context):
         layout = self.layout

@@ -24,7 +24,7 @@ class OBJECT_PT_QuickRenamer(bpy.types.Panel):
     bl_idname = "OBJECT_PT_quick_renamer"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Renamer"
+    bl_category = "CustomTools"
 
     def draw(self, context):
         layout = self.layout

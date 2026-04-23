@@ -48,7 +48,7 @@ class OBJECT_PT_QuickDeleter(bpy.types.Panel):
     bl_idname = "OBJECT_PT_quick_deleter"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = "Tools"
+    bl_category = "CustomTools"
 
     def draw(self, context):
         layout = self.layout

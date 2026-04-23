@@ -58,7 +58,7 @@ class MATERIAL_PT_RemoveDuplicatePanel(bpy.types.Panel):
     bl_idname = "MATERIAL_PT_remove_duplicate_panel"
     bl_space_type = 'NODE_EDITOR'
     bl_region_type = 'UI'
-    bl_category = "Cleaner"
+    bl_category = "CustomTools"
 
     @classmethod
     def poll(cls, context):
