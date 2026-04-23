@@ -21,11 +21,12 @@ All scripts are designed for **Blender 4.0+** and can be installed as individual
 
 | Script Name | Description |
 |--------------|-------------|
-| **smart_delete.py** | Deletes selected objects *and* their mesh data safely. |
-| **smart_rename.py** | Quickly renames multiple objects using regex patterns. |
-| **objectmesh_renamer.py** | Renames both Object and Mesh data with a prefix/append system. |
+| **Batch_Apply_Modifiers.py** | Allows you to apply the modifiers of any selected objects in one press |
 | **batch_material_assigner.py** | Assigns selected materials to multiple objects at once. |
+| **Batch_Pattern_Renamer.py** | Quickly renames multiple objects using regex patterns. |
+| **objectmesh_renamer.py** | Renames both Object and Mesh data with a prefix/append system. |
 | **remove_duplicate_materials.py** | Finds materials ending in .001, .002, etc., replaces them with their original base material if available, and removes the duplicates. |
+| **smart_delete.py** | Deletes selected objects *and* their mesh data safely. |
 | *(More coming soon)* | Prefab utilities, curve-based automation, and geo-node helpers. |
 
 ---

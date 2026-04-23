@@ -1,9 +1,9 @@
 bl_info = {
     "name": "Finalize Geometry Tools",
-    "author": "Your Studio / You",
-    "version": (1, 0, 0),
-    "blender": (3, 6, 0),
-    "location": "View3D > N Panel > Tools",
+    "author": "Millenne Noel",
+    "version": (1, 1, 0),
+    "blender": (4, 0, 0),
+    "location": "View3D > N Panel > CustomTools",
     "description": "Batch apply modifiers on selected mesh objects",
     "category": "Object",
 }
@@ -11,22 +11,29 @@ bl_info = {
 import bpy
 
 
-def apply_all_modifiers(objects):
-    if bpy.context.mode != 'OBJECT':
+def apply_all_modifiers(context, objects):
+    if context.mode != 'OBJECT':
         bpy.ops.object.mode_set(mode='OBJECT')
 
-    active_obj = bpy.context.view_layer.objects.active
+    active_obj = context.view_layer.objects.active
+    applied_count = 0
 
     for obj in objects:
         if obj.type != 'MESH':
             continue
 
-        bpy.context.view_layer.objects.active = obj
+        context.view_layer.objects.active = obj
 
-        for mod in obj.modifiers:
-            bpy.ops.object.modifier_apply(modifier=mod.name)
+        # Copy list to avoid skipping
+        for mod in list(obj.modifiers):
+            try:
+                bpy.ops.object.modifier_apply(modifier=mod.name)
+                applied_count += 1
+            except RuntimeError:
+                print(f"Could not apply modifier: {mod.name} on {obj.name}")
 
-    bpy.context.view_layer.objects.active = active_obj
+    context.view_layer.objects.active = active_obj
+    return applied_count
 
 
 class OBJECT_OT_apply_all_modifiers(bpy.types.Operator):
@@ -36,7 +43,9 @@ class OBJECT_OT_apply_all_modifiers(bpy.types.Operator):
     bl_options = {'REGISTER', 'UNDO'}
 
     def execute(self, context):
-        apply_all_modifiers(context.selected_objects)
+        count = apply_all_modifiers(context, context.selected_objects)
+
+        self.report({'INFO'}, f"Applied {count} modifiers")
         return {'FINISHED'}
 
 
@@ -48,7 +57,10 @@ class VIEW3D_PT_finalize_geometry(bpy.types.Panel):
     bl_category = "CustomTools"
 
     def draw(self, context):
-        self.layout.operator("object.apply_all_modifiers", icon='MODIFIER')
+        layout = self.layout
+
+        layout.label(text="Modifiers:")
+        layout.operator("object.apply_all_modifiers", icon='MODIFIER')
 
 
 classes = (
