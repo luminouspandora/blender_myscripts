@@ -49,7 +49,10 @@ class OBJECT_OT_ObjectMeshRename(bpy.types.Operator):
         preset = scene.rename_append_preset
         custom = scene.rename_append.strip()
 
-        for i, obj in enumerate(context.selected_objects, start=1):
+        selected = context.selected_objects
+        use_numbering = len(selected) > 1
+
+        for i, obj in enumerate(selected, start=1):
 
             parts = [prefix]
 
@@ -61,8 +64,9 @@ class OBJECT_OT_ObjectMeshRename(bpy.types.Operator):
             if custom:
                 parts.append(custom)
 
-            # Add numbering
-            parts.append(str(i).zfill(3))
+            # Add numbering ONLY if multiple objects
+            if use_numbering:
+                parts.append(str(i).zfill(3))
 
             new_name = "_".join(parts)
 
