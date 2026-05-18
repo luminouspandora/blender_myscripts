@@ -15,24 +15,25 @@ import bpy
 def get_append_presets(self, context):
     return [
         ('NONE', "None", ""),
-
-        ('WINDOWS', "Windows", ""),
-        ('DOORS', "Doors", ""),
-        ('SHOPFRONTS', "Shopfronts", ""),
-        ('ROOFS', "Roofs", ""),
-        ('BASE', "Base", ""),
-        ('FOUNDATION', "Foundation", ""),
-        ('PLINTH', "Plinth", ""),
-        ('MOLDINGS', "Moldings", ""),
         ('BALCONIES', "Balconies", ""),
-        ('RAILINGS', "Railings", ""),
-        ('GATES', "Gates", ""),
-        ('SHUTTERS', "Shutters", ""),
+        ('BASE', "Base", ""),
         ('COURTYARDS', "Courtyards", ""),
-        ('PASSAGES', "Passages", ""),
-        ('GARDENS', "Gardens", ""),
+        ('DOORS', "Doors", ""),
         ('FIXTURES', "Fixtures", ""),
+        ('FOUNDATION', "Foundation", ""),
+        ('GATES', "Gates", ""),
+        ('GARDENS', "Gardens", ""),
+        ('MOLDINGS', "Moldings", ""),
+        ('ORNAMENTS', "Ornaments", ""),
+        ('PASSAGES', "Passages", ""),
+        ('PLINTH', "Plinth", ""),
+        ('RAILINGS', "Railings", ""),
+        ('ROOFS', "Roofs", ""),
+        ('SHOPDOORS', "Shopdoors", ""),
+        ('SHOPFRONTS', "Shopfronts", ""),
+        ('SHUTTERS', "Shutters", ""),    
         ('URBAN_EQUIPMENT', "Urban Equipment", ""),
+        ('WINDOWS', "Windows", ""),
     ]
 
 
@@ -52,15 +53,16 @@ class OBJECT_OT_ObjectMeshRename(bpy.types.Operator):
         selected = context.selected_objects
         use_numbering = len(selected) > 1
 
-        for i, obj in enumerate(selected, start=1):
+        for i, obj in enumerate(sorted(selected, key=lambda o: o.name), start=1):
 
-            parts = [prefix]
+            parts = []
 
-            # Add preset
+            if prefix:
+                parts.append(prefix)
+
             if preset != 'NONE':
                 parts.append(preset)
 
-            # Add custom text
             if custom:
                 parts.append(custom)
 
@@ -75,7 +77,14 @@ class OBJECT_OT_ObjectMeshRename(bpy.types.Operator):
 
             # Rename mesh
             if obj.type == 'MESH' and obj.data:
-                obj.data.name = new_name
+                mesh_name = new_name
+                counter = 1
+
+                while mesh_name in bpy.data.meshes:
+                    mesh_name = f"{new_name}_{str(counter).zfill(3)}"
+                    counter += 1
+
+                obj.data.name = mesh_name
 
         return {'FINISHED'}
 
