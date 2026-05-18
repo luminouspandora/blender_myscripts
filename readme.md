@@ -27,7 +27,9 @@ All scripts are designed for **Blender 4.0+** and can be installed as individual
 | **objectmesh_renamer.py** | Renames both Object and Mesh data with a prefix/append system. |
 | **remove_duplicate_materials.py** | Finds materials ending in .001, .002, etc., replaces them with their original base material if available, and removes the duplicates. |
 | **smart_delete.py** | Deletes selected objects *and* their mesh data safely. |
+| **multi_tagger.py** | Apply multiple lowercase tags to collection assets for Asset Browser organization. |
 | *(More coming soon)* | Prefab utilities, curve-based automation, and geo-node helpers. |
+
 
 ---
 
